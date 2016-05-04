@@ -1,4 +1,3 @@
-setwd('C:/Users/somsubhra.g/Google Drive/eclipse/routeOptimization_R')
 load('optimizationData BLR_28_04.RData')
 library(dplyr)
 source(paste(githubDir,"routeSearch.R",sep=""))

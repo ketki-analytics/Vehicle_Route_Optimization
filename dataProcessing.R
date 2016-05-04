@@ -1,13 +1,14 @@
-# install.packages('xlsx')
+## Setting up the Working Directory
+setwd('C:/Users/somsubhra.g/Google Drive/eclipse/routeOptimization_R')
+## Data File - Contains Address,Pincode,City,State, LBH and Slot Details
+fileName = "sample.xlsx"
+
 githubDir = "https://raw.githubusercontent.com/somsubhra88/Vehicle_Route_Optimization/master/"
 library(xlsx)
 library(dplyr)
-## Setting up the Working Date
-setwd('C:/Users/somsubhra.g/Google Drive/eclipse/routeOptimization_R')
-## Data File
-fileName = "kol_data_30-4.xlsx"
 ## Hub Lat Lng
 hubLatLng = c(77.6533668, 12.8852659) #Kudlu
+# hubLatLng = c(77.315002, 28.714921, ) #Mandoli
 # hubLatLng = c(88.317647, 22.739977 )  #Kolkata
 # hubLatLng = c(73.034974, 19.237481)   #Bhiwandi
 

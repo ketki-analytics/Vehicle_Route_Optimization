@@ -1,4 +1,5 @@
 source(paste(githubDir,'geoCodeAPI.R',sep=""))
+source(paste(githubDir,'LatLngSanityCheck.R',sep=""))
 
 unresolvedTrackingIDs = NULL
 data$Lat = data$Lng = NA
@@ -22,6 +23,9 @@ latLngData =data[!is.na(data$Lng) & !is.na(data$Lat),names(data) %in% c("order_e
 latLngData$order_external_id = as.character(latLngData$order_external_id)
 ## Including the Hub Lat Lng to calculate the Time Matrix
 latLngData = rbind(c('Hub',hubLatLng),latLngData)
+
+## Lat Lng Sanity check, if any ID is beyond 2hrs distance then validae with pincode
+latLngData  = LatLngSanityCheck(latLngData,data)
 
 ### Calculation of Time Matrix
 timeMatrix = matrix(data = 0, nr = NROW(latLngData), nc = NROW(latLngData))
