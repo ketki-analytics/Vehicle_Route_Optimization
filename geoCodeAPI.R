@@ -53,8 +53,20 @@ point = function(addr1,addr2,pincode,city,state)
 			content(., "parsed", encoding = "UTF-8")
 	}
 	if(is.null(R$results[[1]]$geometry$location))
-		print(URL)
-	return(	R$results[[1]]$geometry$location)
+	{
+		URL = paste("https://maps.flipkart.com/pincode-info?key=",key,"&pincode=",pincode,"&doctypes=Pincode_region",sep="")
+		R = URL %>%
+			GET(.,add_headers(referer = referer)) %>%
+			content(., "parsed", encoding = "UTF-8")
+		return(list(
+			lat = (R$pincode_info$Pincode_region$bounding_box$northeast$lat + R$pincode_info$Pincode_region$bounding_box$southwest$lat)/2,
+			lng = (R$pincode_info$Pincode_region$bounding_box$northeast$lng + R$pincode_info$Pincode_region$bounding_box$southwest$lng)/2))
+	}
+	if(!is.null(R$results[[1]]$geometry$location))
+		return(	R$results[[1]]$geometry$location)
+
+	if(is.null(R))
+		writeLines(URL)
 }
 
 time = function(point1,point2)
