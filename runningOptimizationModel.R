@@ -1,11 +1,11 @@
 setwd('C:/Users/somsubhra.g/Google Drive/eclipse/routeOptimization_R')
 load('optimizationData BLR_28_04.RData')
 library(dplyr)
-source("routeSearch.R")
-source("detailPath.R")
-source("TABU.r")
-source("updateRoute.R")
-source("getVanStartTime.R")
+source(paste(githubDir,"routeSearch.R",sep=""))
+source(paste(githubDir,"detailPath.R",sep=""))
+source(paste(githubDir,"TABU.R",sep=""))
+source(paste(githubDir,"updateRoute.R",sep=""))
+source(paste(githubDir,"getVanStartTime.R",sep=""))
 
 ## If you have proir knowledge that these Orders do not require OFD, then put the Tracking IDs here
 notDeliveredOID = NULL

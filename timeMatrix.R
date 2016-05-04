@@ -1,5 +1,4 @@
-setwd('C:/Users/somsubhra.g/Google Drive/eclipse/routeOptimization_R')
-source('geoCodeAPI.r')
+source(paste(githubDir,'geoCodeAPI.R',sep=""))
 
 unresolvedTrackingIDs = NULL
 data$Lat = data$Lng = NA
