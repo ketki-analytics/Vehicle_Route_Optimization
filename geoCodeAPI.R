@@ -93,7 +93,6 @@ LatLngFromPincode = function(pincode)
 		GET(.,add_headers(referer = referer)) %>%
 		content(., "parsed", encoding = "UTF-8")
 	return(list(
-		lat = (R$pincode_info$Pincode_region$bounding_box$northeast$lat + R$pincode_info$Pincode_region$bounding_box$southwest$lat)/2,
-		lng = (R$pincode_info$Pincode_region$bounding_box$northeast$lng + R$pincode_info$Pincode_region$bounding_box$southwest$lng)/2))
+		Lat = (R$pincode_info$Pincode_region$bounding_box$northeast$lat + R$pincode_info$Pincode_region$bounding_box$southwest$lat)/2,
+		Lng = (R$pincode_info$Pincode_region$bounding_box$northeast$lng + R$pincode_info$Pincode_region$bounding_box$southwest$lng)/2))
 }
-
