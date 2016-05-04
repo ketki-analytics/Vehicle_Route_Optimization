@@ -2,7 +2,6 @@ tabuSearch = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime
 {
 	outlierOID = NULL
 	chkList = NULL
-	source(paste(githubDir,"detailPath.R"),sep=""))
 	path = detailPath(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25)
 	counter = 0
 	repeat
