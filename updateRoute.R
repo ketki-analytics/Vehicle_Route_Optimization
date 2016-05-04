@@ -1,7 +1,7 @@
 updateRoute = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,L = 7.5,Q = 130)
 {
   ## Taking all the Permutations of Vans Start Time
-  source('uniquePerm.r')
+  source(paste(githubDir,"uniquePerm.R",sep=""))
   permMat = uniquePerm(vanStartTime)
   
 	## Getting the Current Path and Total travell Time
