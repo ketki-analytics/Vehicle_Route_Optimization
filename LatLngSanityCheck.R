@@ -14,7 +14,7 @@ LatLngSanityCheck = function(latLngData,data)
       if(t_Hub_j_new < t_Hub_j)
       {
         latLngData[i,"Lng"] = R$Lng
-        latLngData[i,"Lng"] = R$Lat
+        latLngData[i,"Lat"] = R$Lat
       }
     }
   }
