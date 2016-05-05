@@ -74,13 +74,19 @@ time = function(point1,point2)
 	avgSpeed = 15000
 	URL = paste("https://maps.flipkart.com/api/v1/directions?point=",point1$Lat,",",point1$Lng,
 			'&point=',point2$Lat,",",point2$Lng,"&key=",key,sep="")
-	R = URL %>%
-		GET(.,add_headers(referer = referer)) %>%
-		content(., "parsed", encoding = "UTF-8")
-	if(is.null(R$paths[[1]]$distance))
-	  time(point1,point2)
-	else
-	  return( R$paths[[1]]$distance/avgSpeed)
+	output = NULL
+	counter = 0
+	while(is.null(output))
+	{
+		counter = counter + 1
+		R = URL %>%
+			GET(.,add_headers(referer = referer)) %>%
+			content(., "parsed", encoding = "UTF-8")
+		output = R$paths[[1]]$distance
+		if(!is.null(output) | counter > 20)
+			break
+	}
+	return( R$paths[[1]]$distance/avgSpeed)
 }
 
 LatLngFromPincode = function(pincode)
