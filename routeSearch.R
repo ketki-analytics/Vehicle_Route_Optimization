@@ -32,7 +32,7 @@ routeSearch = function(timeMatrix,loadData,slotData,deliveryTime = 17,vanStartTi
 					if(load + currentLoad <= Q)
 						currentScore = currentScore + 50
 					if(load + currentLoad > Q)
-						currentScore = currentScore - 100/(Q-load - currentLoad)
+						currentScore = currentScore - 200/(Q-load - currentLoad)
 					if(endTime + t_ij < vanStartTime[van] + 100*L)
 						currentScore = currentScore + 50
 					currentScore = currentScore + 1000/t_ij
