@@ -8,7 +8,9 @@ tabuSearch = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime
 	{
 		counter = counter + 1
 		oidTemp = path %>% filter(.,! to %in% c(chkList,'Hub')) %>%filter(.,t_ij == max(t_ij)) %>% filter(.,load == max(load))
-		
+		if(length(oidTemp$t_ij) != 0)
+			oidTemp = oidTemp[1,]
+
 		singleID = integer(0)
 		if(length(which(unlist(lapply(route,length)) == 3)) != 0)
 		  singleID = route[[which(unlist(lapply(route,length)) == 3)]][2]
@@ -17,11 +19,11 @@ tabuSearch = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime
 			break
 		
 		if(length(oidTemp$t_ij) == 0 & length(singleID) != 0)
-		  oidTemp = path %>% filter(.,to %in% c(chkList,singleID))
+		  oidTemp = path %>% filter(.,to %in% singleID)
 		
 		if(length(oidTemp$t_ij) != 0)
 		  if(oidTemp$t_ij < timeCutOff & length(singleID) != 0)
-		    oidTemp = path %>% filter(.,to %in% c(chkList,singleID))
+		    oidTemp = path %>% filter(.,to %in%  singleID)
 		
 		if(length(oidTemp$t_ij) == 0)
 		  break

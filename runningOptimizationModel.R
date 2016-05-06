@@ -1,4 +1,4 @@
-load('optimizationData BLR_28_04.RData')
+load(paste('optimizationData ',unlist(strsplit(fileName,"\\."))[1],'.RData',sep=""))
 library(dplyr)
 source(paste(githubDir,"routeSearch.R",sep=""))
 source(paste(githubDir,"detailPath.R",sep=""))
@@ -9,7 +9,7 @@ source(paste(githubDir,"getVanStartTime.R",sep=""))
 ## If you have proir knowledge that these Orders do not require OFD, then put the Tracking IDs here
 notDeliveredOID = NULL
 unDel = 0
-vanStartTime = getVanStartTime(loadData,slotData,Q=125)
+vanStartTime = getVanStartTime(loadData,slotData,Q=130)
 # vanStartTime = c(rep(750,6),rep(1300,4))
 
 notFound = TRUE
