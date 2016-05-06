@@ -21,7 +21,7 @@ routeSearch = function(timeMatrix,loadData,slotData,deliveryTime = 17,vanStartTi
 			{
 				currentScore = 0
 				t_ij = as.numeric(timeVector[names(timeVector) %in% oid])
-				t_ij = ifelse(t_ij < 0.001,1,t_ij)
+				t_ij = ifelse(t_ij < 0.001,25,t_ij)
 				slotStartTime = slotData$Slot_Start_Time[slotData$order_external_id %in% oid]
 				slotEndTime = slotData$Slot_End_Time[slotData$order_external_id %in% oid]
 				currentLoad = loadData[loadData$order_external_id %in% oid,"Volume"]
