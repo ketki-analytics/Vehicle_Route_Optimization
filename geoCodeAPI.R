@@ -11,47 +11,27 @@ point = function(addr1,addr2,pincode,city,state)
 	pincode = as.character(pincode)
 	city = as.character(city)
 	state = as.character(state)
+
 	if(!addr2 %in% "" & !is.na(addr2))
 	{
 		addr2 = as.character(addr2)
 		URL = paste("https://maps.flipkart.com/geocode?key=",key, 
-					"&addr1=",addr1,"&addr2=",addr2,"&city=",city,
-					"&state=",state,"&pincode=",pincode,sep="")
+				"&addr1=",URLencode(addr1),"&addr2=",URLencode(addr2),"&city=",city,
+				"&state=",state,"&pincode=",pincode,sep="")
 		URL = gsub("\\#","",URL)
 	}
 	else
 	{
 		URL = paste("https://maps.flipkart.com/geocode?key=",key, 
-					"&addr1=",addr1,"&city=",city,"&state=",state,
-					"&pincode=",pincode,sep="")
+				"&addr1=",URLencode(addr1),"&city=",city,"&state=",state,
+				"&pincode=",pincode,sep="")
 		URL = gsub("\\#","",URL)
 	}
+	
 	R = URL %>%
 		GET(.,add_headers(referer = referer)) %>%
 		content(., "parsed", encoding = "UTF-8")
-
-	if(is.null(R$results[[1]]$geometry$location))
-	{
-		if(!addr2 %in% "" & !is.na(addr2))
-		{
-			addr2 = as.character(addr2)
-			URL = paste("https://maps.flipkart.com/geocode?key=",key, 
-					"&addr1=",URLencode(addr1),"&addr2=",URLencode(addr2),"&city=",city,
-					"&state=",state,"&pincode=",pincode,sep="")
-			URL = gsub("\\#","",URL)
-		}
-		else
-		{
-			URL = paste("https://maps.flipkart.com/geocode?key=",key, 
-					"&addr1=",URLencode(addr1),"&city=",city,"&state=",state,
-					"&pincode=",pincode,sep="")
-			URL = gsub("\\#","",URL)
-		}
-		
-		R = URL %>%
-			GET(.,add_headers(referer = referer)) %>%
-			content(., "parsed", encoding = "UTF-8")
-	}
+			
 	if(is.null(R$results[[1]]$geometry$location))
 	{
 		URL = paste("https://maps.flipkart.com/pincode-info?key=",key,"&pincode=",pincode,"&doctypes=Pincode_region",sep="")
@@ -71,6 +51,8 @@ point = function(addr1,addr2,pincode,city,state)
 
 time = function(point1,point2)
 {
+	key <<- "0e41de65-d2c5-4ebd-9cfb-a552dae27f3e"
+	referer <<- "http://large-analytics.flipkart.com/"
 	avgSpeed = 15000
 	URL = paste("https://maps.flipkart.com/api/v1/directions?point=",point1$Lat,",",point1$Lng,
 			'&point=',point2$Lat,",",point2$Lng,"&key=",key,sep="")
