@@ -1,17 +1,8 @@
-## Setting up the Working Directory
-setwd('C:/Users/somsubhra.g/Google Drive/eclipse/routeOptimization_R')
-## Data File - Contains Address,Pincode,City,State, LBH and Slot Details
-fileName = "sample.xlsx"
-
-githubDir = "https://raw.githubusercontent.com/somsubhra88/Vehicle_Route_Optimization/master/"
+sink(file = paste('LogFile ',unlist(strsplit(fileName,"\\."))[1],'.txt',sep=""))
 library(xlsx)
 library(dplyr)
-## Hub Lat Lng
-hubLatLng = c(77.6533668, 12.8852659) #Kudlu
-# hubLatLng = c(77.315002, 28.714921, ) #Mandoli
-# hubLatLng = c(88.317647, 22.739977 )  #Kolkata
-# hubLatLng = c(73.034974, 19.237481)   #Bhiwandi
-
+####################################################################################################
+## Processing the Data
 data = 
   read.xlsx(file = fileName,sheetIndex = 1) %>%
   dplyr::select(.,tracking_id,address_line1,address_line2,address_pincode,address_city,
@@ -25,3 +16,10 @@ data =
   transform(.,Slot_Start_Time = ifelse(is.na(Slot_Start_Time),800,Slot_Start_Time),
             Slot_End_Time = ifelse(is.na(Slot_End_Time),2000,Slot_End_Time)) %>%
   filter(.,!is.na(order_external_id))
+
+writeLines(paste("No of lines in the Base Data",NROW(data)))
+writeLines('Data Processing is Successful')
+writeLines('####################################################################################################')
+####################################################################################################
+## Calling the Time Matrix Code
+source(paste(githubDir,'timeMatrix.R',sep=""))
