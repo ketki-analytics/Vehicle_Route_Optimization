@@ -37,7 +37,10 @@ writeLines(paste("Total Kilometer Travelled",sum(path$t_ij)/4))
 writeLines('####################################################################################################')
 ## Updating the Vanstart Time
 writeLines('Getting the Optimal Van Start Time')
-vanStartTime = updateRoute(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,L = 7.5,Q = 130)
+if(length(unique(slotData$Slot_Start_Time)) > 1)
+  vanStartTime = updateRoute(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,L = 7.5,Q = 130)
+if(length(unique(slotData$Slot_Start_Time)) == 1)
+  writeLines('Van Updation is not Required')
 
 ## Based on new Van Start Time Definig the new Route
 route = routeSearch(timeMatrix,loadData,slotData,vanStartTime, deliveryTime = 25,L = 7.5,Q = 130)
