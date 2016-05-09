@@ -1,3 +1,4 @@
+writeLines('---------Optimization Code---------')
 load(paste('optimizationData ',unlist(strsplit(fileName,"\\."))[1],'.RData',sep=""))
 library(dplyr)
 source(paste(githubDir,"routeSearch.R",sep=""))

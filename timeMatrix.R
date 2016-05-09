@@ -1,3 +1,4 @@
+writeLines('---------Time Matrix Code---------')
 source(paste(githubDir,'geoCodeAPI.R',sep=""))
 source(paste(githubDir,'LatLngSanityCheck.R',sep=""))
 writeLines('Loading Source Codes are successful')
