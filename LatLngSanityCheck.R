@@ -11,7 +11,7 @@ LatLngSanityCheck = function(latLngData,data)
       R$Lng = as.character(R$Lng)
       R$Lat = as.character(R$Lat)
       t_Hub_j_new = time(point1 = as.list(latLngData[1,-1]),point2 = R)
-      if(t_Hub_j_new < t_Hub_j)
+      if(t_Hub_j_new + 0.5 < t_Hub_j)
       {
         latLngData[i,"Lng"] = R$Lng
         latLngData[i,"Lat"] = R$Lat
