@@ -7,6 +7,8 @@ tabuSearch = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime
   repeat
   {
     counter = counter + 1
+    if(counter > NROW(timeMatrix))
+      break
     oidTemp = path %>% filter(.,! to %in% c(chkList,'Hub')) %>%filter(.,t_ij == max(t_ij)) %>% filter(.,load == max(load))
     if(length(oidTemp$t_ij) != 0)
       oidTemp = oidTemp[1,]
