@@ -10,7 +10,7 @@ detailPath = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime
 		{
 			t_ij = 100*timeMatrix[vanRoute[i],vanRoute[i+1]]
 			t_ij = ifelse(t_ij < 0.001, 
-						ifelse(data$Pincode[data$order_external_id %in% lastOID] == data$Pincode[data$order_external_id %in% oid],25,t_ij), t_ij)
+						ifelse(data$Pincode[data$order_external_id %in% vanRoute[i]] == data$Pincode[data$order_external_id %in% vanRoute[i+1]],25,t_ij), t_ij)
 			endTime = endTime + t_ij + deliveryTime
 			load = ifelse(vanRoute[i+1] != "Hub",loadData[loadData$order_external_id == vanRoute[i+1],"Volume"],0)
 			routeDetail = rbind(routeDetail,
