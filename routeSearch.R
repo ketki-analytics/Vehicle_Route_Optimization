@@ -21,7 +21,9 @@ routeSearch = function(timeMatrix,loadData,slotData,deliveryTime = 17,vanStartTi
 			{
 				currentScore = 0
 				t_ij = as.numeric(timeVector[names(timeVector) %in% oid])
-				t_ij = ifelse(t_ij < 0.001,25,t_ij)
+				t_ij = ifelse(t_ij < 0.001,
+							ifelse(data$Pincode[data$order_external_id %in% lastOID] == data$Pincode[data$order_external_id %in% oid],25,t_ij),
+							t_ij)
 				slotStartTime = slotData$Slot_Start_Time[slotData$order_external_id %in% oid]
 				slotEndTime = slotData$Slot_End_Time[slotData$order_external_id %in% oid]
 				currentLoad = loadData[loadData$order_external_id %in% oid,"Volume"]
@@ -38,13 +40,13 @@ routeSearch = function(timeMatrix,loadData,slotData,deliveryTime = 17,vanStartTi
 					currentScore = currentScore + 1000/t_ij
 				}
 				##Condition - 2	
-				if(endTime + t_ij + 100 >= slotStartTime & endTime + t_ij <= slotEndTime)
+				if(endTime + t_ij + 100 >= slotStartTime & endTime + t_ij < slotStartTime)
 				{
 					currentScore = currentScore + 25
 					if(load + currentLoad <= Q)
 						currentScore = currentScore + 50
 					if(load + currentLoad > Q)
-						currentScore = currentScore - 100/(Q-load - currentLoad)
+						currentScore = currentScore - 200/(Q-load - currentLoad)
 					if(endTime + t_ij < vanStartTime[van] + 100*L)
 						currentScore = currentScore + 50
 					currentScore = currentScore + 100/t_ij
@@ -57,7 +59,7 @@ routeSearch = function(timeMatrix,loadData,slotData,deliveryTime = 17,vanStartTi
 					if(load + currentLoad <= Q)
 						currentScore = currentScore + 50
 					if(load + currentLoad > Q)
-						currentScore = currentScore - 100/(Q-load - currentLoad)
+						currentScore = currentScore - 200/(Q-load - currentLoad)
 					if(endTime + t_ij < vanStartTime[van] + 100*L)
 						currentScore = currentScore + 50
 					currentScore = currentScore + 100/t_ij
