@@ -68,7 +68,7 @@ repeat
   finalResult = tabuSearch(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,timeCutOff = 45,Q = 130)
   finalPath = detailPath(finalResult$route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25)
   writeLines(paste("Total Kilometer Travelled",sum(finalPath$t_ij)/4))
-  write.csv(finalPath,paste('Optimized Route ',unlist(strsplit(fileName,"\\."))[1],' ',counter,'.csv',sep=""),row.names = FALSE)
+  write.csv(finalPath,paste('Optimized Route ',unlist(strsplit(fileName,"\\."))[1],' ',loopCounter,'.csv',sep=""),row.names = FALSE)
   writeLines('End of optimization')
   writeLines('####################################################################################################')
   summaryResults = rbind(summaryResults,
@@ -85,4 +85,5 @@ repeat
 }
 writeLines('End of Iteration')
 print(summaryResults)
+write.csv(summaryResults,paste('summaryResults ',unlist(strsplit(fileName,"\\."))[1],'.csv',sep=""),row.names = FALSE)
 sink()
