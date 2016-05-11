@@ -38,7 +38,7 @@ repeat
     if(counter > 100)
       break
   }
-  if(length(unique(unlist(route))) < NCOL(timeMatrix))
+  if(length(unique(unlist(route))) < length(unique(colnames(timeMatrix))))
   {
     writeLines('Initial Solution Not Found')
     break
