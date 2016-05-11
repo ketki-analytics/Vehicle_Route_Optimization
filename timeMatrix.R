@@ -32,9 +32,9 @@ writeLines('####################################################################
 latLngData = rbind(c('Hub',hubLatLng),latLngData)
 ####################################################################################################
 ## Lat Lng Sanity check, if any ID is beyond 2hrs distance then validae with pincode
-latLngData  = LatLngSanityCheck(latLngData,data)
-writeLines('LatLng Sanity check is done')
-writeLines('####################################################################################################')
+# latLngData  = LatLngSanityCheck(latLngData,data)
+# writeLines('LatLng Sanity check is done')
+# writeLines('####################################################################################################')
 ####################################################################################################
 ### Calculation of Time Matrix
 timeMatrix = matrix(data = 0, nr = NROW(latLngData), nc = NROW(latLngData))
