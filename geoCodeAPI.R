@@ -49,11 +49,10 @@ point = function(addr1,addr2,pincode,city,state)
 		writeLines(URL)
 }
 
-time = function(point1,point2)
+time = function(point1,point2,avgSpeed = 15000)
 {
 	key <<- "0e41de65-d2c5-4ebd-9cfb-a552dae27f3e"
 	referer <<- "http://large-analytics.flipkart.com/"
-	avgSpeed = 15000
 	URL = paste("https://maps.flipkart.com/api/v1/directions?point=",point1$Lat,",",point1$Lng,
 			'&point=',point2$Lat,",",point2$Lng,"&key=",key,sep="")
 	output = NULL

@@ -12,6 +12,12 @@ githubDir = "https://raw.githubusercontent.com/somsubhra88/Vehicle_Route_Optimiz
 hubLatLng = c(88.317647, 22.739977 )  #Kolkata
 # hubLatLng = c(73.034974, 19.237481)   #Bhiwandi
 ####################################################################################################
+# Shift start timing for the Vans
+shiftStart = c(750,1350) # For Kolkata, Kudlu
+# shiftStart = c(900,1300) # for Bhiwandi
+# Average Speed for different Location
+avgSpeed = 15 # For Kudlu, Bhiwandi, Mandoli
+# avgSpeed = 20 # For Kolkata Only
 ## If you have proir knowledge that these Orders do not require OFD, then put the Tracking IDs here
 notDeliveredOID = NULL
 unDel = 0

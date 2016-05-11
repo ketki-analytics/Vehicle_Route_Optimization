@@ -43,7 +43,7 @@ for(i in 1:(NROW(latLngData)-1))
 {
 	for(j in (i+1):NROW(latLngData))
 	{
-		t_ij = try(time(point1 = as.list(latLngData[i,-1]),point2 = as.list(latLngData[j,-1])))
+		t_ij = try(time(point1 = as.list(latLngData[i,-1]),point2 = as.list(latLngData[j,-1]),avgSpeed = 1000*avgSpeed))
 		if(!grepl("Error",t_ij) | !is.null(t_ij))
 			timeMatrix[i,j] = timeMatrix[j,i] = t_ij
 		else
