@@ -65,7 +65,7 @@ repeat
   writeLines('####################################################################################################')
   ## Tabu Search
   writeLines('-------TABU Search---------')
-  finalResult = tabuSearch(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,timeCutOff = 45,Q = 130)
+  finalResult = tabuSearch(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,timeCutOff = 45,Q = 130,slotAdherence = 1 - loopCounter*0.1)
   finalPath = detailPath(finalResult$route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25)
   writeLines(paste("Total Kilometer Travelled",sum(finalPath$t_ij)/4))
   write.csv(finalPath,paste('Optimized Route ',unlist(strsplit(fileName,"\\."))[1],' ',loopCounter,'.csv',sep=""),row.names = FALSE)
