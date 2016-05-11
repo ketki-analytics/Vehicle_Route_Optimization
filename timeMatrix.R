@@ -45,7 +45,7 @@ for(i in 1:(NROW(latLngData)-1))
 	{
 		t_ij = NULL
 		t_ij = time(point1 = as.list(latLngData[i,-1]),point2 = as.list(latLngData[j,-1]),avgSpeed = 1000*avgSpeed)
-		if(!is.null(t_ij) | length(t_ij) != 0)
+		if(!is.null(t_ij) & length(t_ij) != 0)
 			timeMatrix[i,j] = timeMatrix[j,i] = t_ij
 		else
 			writeLines(paste('Time Matrix was not able to resolve for i =',i,'j=',j))
