@@ -13,7 +13,7 @@ for(i in 1:NROW(data))
 					pincode = data$Pincode[i],
 					city = data$City[i], 
 					state = data$State[i])	
-	if(!is.null(LatLng))
+	if(!is.null(LatLng) | length(t_ij) != 0)
 	{
 		data$Lat[i] = LatLng$lat
 		data$Lng[i] = LatLng$lng
