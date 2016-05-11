@@ -1,4 +1,4 @@
-tabuSearch = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,timeCutOff = 60,Q = 130)
+tabuSearch = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,timeCutOff = 60,Q = 130,slotAdherence = 0.9)
 {
   outlierOID = NULL
   chkList = NULL
@@ -57,7 +57,7 @@ tabuSearch = function(route,timeMatrix,latLngData,loadData,slotData,vanStartTime
         if(minDiff > currentDiff & 
            ((
              totalTime > sum(newPath$t_ij) & 
-             sum(newPath$slotAdherence)/(length(newPath$slotAdherence)-length(route)) >= 0.9 &
+             sum(newPath$slotAdherence)/(length(newPath$slotAdherence)-length(route)) >= slotAdherence &
              sum(newPath$load[newPath$VanNo == r]) < Q + 5
            ) |
            ifelse(length(singleID) != 0, oidTemp$to == singleID & any(unlist(lapply(route,length)) == 3),FALSE)
