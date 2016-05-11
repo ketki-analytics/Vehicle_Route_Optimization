@@ -1,5 +1,5 @@
 writeLines('---------Optimization Code---------')
-load(paste('optimizationData ',unlist(strsplit(fileName,"\\."))[1],'.RData',sep=""))
+# load(paste('optimizationData ',unlist(strsplit(fileName,"\\."))[1],'.RData',sep=""))
 library(dplyr)
 source(paste(githubDir,"routeSearch.R",sep=""))
 source(paste(githubDir,"detailPath.R",sep=""))
@@ -8,13 +8,13 @@ source(paste(githubDir,"updateRoute.R",sep=""))
 source(paste(githubDir,"getVanStartTime.R",sep=""))
 writeLines('Loading of Source files are successful')
 writeLines('####################################################################################################')
-q = 130
-counter = 0
+q = 90
+loopCounter = 0
 summaryResults = NULL
 repeat
 {
-  counter = counter + 1
-  if(counter > 3)
+  loopCounter = loopCounter + 1
+  if(loopCounter > 3)
     break
 
   writeLines('Getting the Optimal Van Start Time')
@@ -38,7 +38,13 @@ repeat
     if(counter > 100)
       break
   }
-  writeLines('Initial Solution has found')
+  if(length(unique(unlist(route))) < NCOL(timeMatrix))
+  {
+    writeLines('Initial Solution Not Found')
+    break
+  }
+  else
+    writeLines('Initial Solution has found')
 
   ## Initial Timing
   path = detailPath(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25)

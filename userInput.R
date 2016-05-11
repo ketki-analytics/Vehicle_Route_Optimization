@@ -4,7 +4,7 @@ setwd('C:/Users/somsubhra.g/Google Drive/eclipse/routeOptimization_R')
 ## Data File - Contains Address,Pincode,City,State, LBH and Slot Details
 fileName = "kol_data_29-4.xlsx"
 ## GitHub Directory
-githubDir = "https://raw.githubusercontent.com/somsubhra88/Vehicle_Route_Optimization/master/"
+githubDir = "https://raw.githubusercontent.com/somsubhra88/Vehicle_Route_Optimization/MultipleCuts/"
 ####################################################################################################
 ## Hub Lat Lng
 # hubLatLng = c(77.6533668, 12.8852659) #Kudlu
@@ -18,6 +18,7 @@ shiftStart = c(750,1350) # For Kolkata, Kudlu
 # Average Speed for different Location
 avgSpeed = 15 # For Kudlu, Bhiwandi, Mandoli
 # avgSpeed = 20 # For Kolkata Only
+####################################################################################################
 ## If you have proir knowledge that these Orders do not require OFD, then put the Tracking IDs here
 notDeliveredOID = NULL
 unDel = 0
