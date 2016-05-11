@@ -8,7 +8,7 @@ source(paste(githubDir,"updateRoute.R",sep=""))
 source(paste(githubDir,"getVanStartTime.R",sep=""))
 writeLines('Loading of Source files are successful')
 writeLines('####################################################################################################')
-q = 90
+q = 120
 loopCounter = 0
 summaryResults = NULL
 repeat
