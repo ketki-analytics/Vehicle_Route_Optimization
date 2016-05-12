@@ -13,7 +13,7 @@ routeSearch = function(timeMatrix,loadData,slotData,deliveryTime = 17,vanStartTi
 		endTime = vanStartTime[van]
 		repeat
 		{
-			previousScore = 0
+			previousScore = -9999
 			lastOID = route[[van]][length(route[[van]])]
 			timeVector = 100*timeMatrix[lastOID, colnames(timeMatrix) %in% setdiff(OIDCheckList[-1],lastOID)]
 			nextOID = NULL
