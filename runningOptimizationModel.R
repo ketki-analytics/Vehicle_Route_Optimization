@@ -1,11 +1,12 @@
 writeLines('---------Optimization Code---------')
-# load(paste('optimizationData ',unlist(strsplit(fileName,"\\."))[1],'.RData',sep=""))
+load(paste('optimizationData ',unlist(strsplit(fileName,"\\."))[1],'.RData',sep=""))
 library(dplyr)
 source(paste(githubDir,"routeSearch.R",sep=""))
 source(paste(githubDir,"detailPath.R",sep=""))
 source(paste(githubDir,"TABU.R",sep=""))
 source(paste(githubDir,"updateRoute.R",sep=""))
 source(paste(githubDir,"getVanStartTime.R",sep=""))
+source(paste(githubDir,"optimizeVanStartTime.R",sep=""))
 writeLines('Loading of Source files are successful')
 writeLines('####################################################################################################')
 q = 120
@@ -51,11 +52,7 @@ repeat
   writeLines(paste("Total Kilometer Travelled",sum(path$t_ij)/4))
   writeLines('####################################################################################################')
   ## Updating the Vanstart Time
-  writeLines('Getting the Optimal Van Start Time')
-  if(length(unique(slotData$Slot_Start_Time)) > 1)
-    vanStartTime = updateRoute(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,L = 7.5,Q = 130)
-  if(length(unique(slotData$Slot_Start_Time)) == 1)
-    writeLines('Van Updation is not Required')
+  vanStartTime = optmizeVanStartTime(route,timeMatrix,latLngData,loadData,slotData,vanStartTime,deliveryTime = 25,L = 7.5,Q = 130)
 
   ## Based on new Van Start Time Definig the new Route
   route = routeSearch(timeMatrix,loadData,slotData,vanStartTime, deliveryTime = 25,L = 7.5,Q = 130)
