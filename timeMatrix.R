@@ -59,7 +59,7 @@ rownames(timeMatrix) = latLngData$order_external_id
 ####################################################################################################
 ## Keeping the Backup and applying cut off Time as 2 hours
 timeMatrixOriginal = timeMatrix
-timeMatrix[timeMatrix > 2] = 2
+timeMatrix[timeMatrix > maxDistCutOff] = maxDistCutOff
 
 ####################################################################################################
 #Load Calculation based on LBH
