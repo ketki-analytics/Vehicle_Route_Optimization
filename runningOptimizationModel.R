@@ -9,7 +9,6 @@ source(paste(githubDir,"getVanStartTime.R",sep=""))
 source(paste(githubDir,"optimizeVanStartTime.R",sep=""))
 writeLines('Loading of Source files are successful')
 writeLines('####################################################################################################')
-q = 120
 loopCounter = 0
 summaryResults = NULL
 repeat
@@ -74,7 +73,7 @@ repeat
               Distance_Travelled = avgSpeed * sum(finalPath$t_ij)/60,
               Time_on_Travel = sum(finalPath$t_ij)/60,
               Total_Time_on_Field = sum(finalPath$t_ij)/60 + (length(unique(unlist(finalResult$route))) - 1)/4,
-              Slot_Adherence = (sum(finalPath$slotAdherence) - length(vanStartTime))/(length(finalPath$slotAdherence) - length(vanStartTime))))
+              Slot_Adherence = (sum(finalPath$slotAdherence))/(length(finalPath$slotAdherence) - length(vanStartTime))))
   writeLines(' Started New Iteration')
   q = ceiling(q*sum(loadData$Volume)/(sum(loadData$Volume)-q))
   if(q <= 0)
