@@ -18,6 +18,9 @@ shiftStart = c(900,1300) # for Bhiwandi
 # Average Speed for different Location
 avgSpeed = 15 # For Kudlu, Bhiwandi, Mandoli
 # avgSpeed = 20 # For Kolkata Only
+# Cut Off Time
+maxDistCutOff = 3 #Bangalore and Kolkata
+# maxDistCutOff = 4 #Bhiwandi and Mandoli
 ####################################################################################################
 ## If you have proir knowledge that these Orders do not require OFD, then put the Tracking IDs here
 notDeliveredOID = NULL
