@@ -9,16 +9,17 @@ source(paste(githubDir,"getVanStartTime.R",sep=""))
 source(paste(githubDir,"optimizeVanStartTime.R",sep=""))
 writeLines('Loading of Source files are successful')
 writeLines('####################################################################################################')
+Q_start = sum(loadData$Volume)/(ceiling(sum(loadData$Volume)/130) + 3)
 loopCounter = 0
 summaryResults = NULL
 repeat
 {
   loopCounter = loopCounter + 1
-  if(loopCounter > 3)
+  if(loopCounter > 4)
     break
 
   writeLines('Getting the Optimal Van Start Time')
-  vanStartTime = getVanStartTime(loadData,slotData, shiftStart = shiftStart, Q=q)
+  vanStartTime = getVanStartTime(loadData,slotData, shiftStart = shiftStart, Q=Q_start)
   writeLines(paste('Initial Van Start Times are',paste(vanStartTime,collapse=",")))
   writeLines('####################################################################################################')
   # vanStartTime = c(rep(750,6),rep(1300,4))
@@ -75,8 +76,8 @@ repeat
               Total_Time_on_Field = sum(finalPath$t_ij)/60 + (length(unique(unlist(finalResult$route))) - 1)/4,
               Slot_Adherence = (sum(finalPath$slotAdherence))/(length(finalPath$slotAdherence) - length(vanStartTime))))
   writeLines(' Started New Iteration')
-  q = ceiling(q*sum(loadData$Volume)/(sum(loadData$Volume)-q))
-  if(q <= 0)
+  Q_start = ceiling(Q_start*sum(loadData$Volume)/(sum(loadData$Volume)-Q_start))
+  if(Q_start <= 0)
     break
 }
 writeLines('End of Iteration')
